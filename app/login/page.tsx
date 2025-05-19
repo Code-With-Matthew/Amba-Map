@@ -11,6 +11,7 @@ export default function LoginPage() {
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    localStorage.setItem('role', role);
     router.push(`/${role}`);
   };
 

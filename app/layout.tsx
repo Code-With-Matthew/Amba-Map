@@ -1,25 +1,26 @@
-import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
 import './globals.css';
-import NavSwitch from './components/NavSwitch';
+import { Inter } from 'next/font/google';
+import { ThemeProvider } from './components/ThemeProvider';
+import ClientLayout from './ClientLayout';
+import type { Metadata } from 'next';
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ 
+  subsets: ['latin'],
+  variable: '--font-inter',
+});
 
 export const metadata: Metadata = {
-  title: 'WEBGIS AmbaMap',
-  description: 'Map bagi pecinta Amba',
+  title: 'GIS Application',
+  description: 'A Next.js WebGIS Application',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        {/* Pilih Navbar via client-side NavSwitch */}
-        <NavSwitch />
-
-        <main className="pt-16">
-          {children}
-        </main>
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${inter.variable} font-sans`}>
+        <ThemeProvider>
+          <ClientLayout>{children}</ClientLayout>
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -2,7 +2,9 @@
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import DynamicMap from '../components/MapComponent';
+import dynamic from 'next/dynamic';
+
+const FamilyMap = dynamic(() => import('../components/FamilyMap'), { ssr: false });
 
 export default function UserPage() {
   const router = useRouter();
@@ -10,13 +12,13 @@ export default function UserPage() {
   useEffect(() => {
     const role = localStorage.getItem('role');
     if (role !== 'user') {
-      router.push('/login'); // redirect kalau bukan user
+      router.push('/login');
     }
   }, [router]);
 
   return (
     <main className="h-[calc(100vh-4rem)]">
-      <DynamicMap />
+      <FamilyMap adminMode={false} />
     </main>
   );
 }

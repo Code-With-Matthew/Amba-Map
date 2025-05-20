@@ -1,17 +1,18 @@
+import 'leaflet/dist/leaflet.css';  
 import './globals.css';
 import { Inter } from 'next/font/google';
 import { ThemeProvider } from './components/ThemeProvider';
 import ClientLayout from './ClientLayout';
 import type { Metadata } from 'next';
 
-const inter = Inter({ 
-  subsets: ['latin'],
-  variable: '--font-inter',
-});
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
 export const metadata: Metadata = {
-  title: 'GIS Application',
-  description: 'A Next.js WebGIS Application',
+  title: 'Amba-Map',
+  description: 'WebGIS bagi pecinta Amba',
+  icons: {
+    icon: '/favicon-32.png', 
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
